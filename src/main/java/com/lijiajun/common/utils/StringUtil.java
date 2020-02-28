@@ -17,7 +17,7 @@ public class StringUtil {
 	}
 	//中文简体随机字符
 	public static String randomChineseString() {
-		 String str = null;
+		String str = null;
         int highPos, lowPos;
         Random random = new Random();
         highPos = (176 + Math.abs(random.nextInt(40)));//区码，0xA0打头，从第16区开始，即0xB0=11*16=176,16~55一级汉字，56~87二级汉字
@@ -55,4 +55,37 @@ public class StringUtil {
 		return name1+name2;
 	}
 
+	//判断是否是手机号
+	public static boolean isPhone(String src){
+		//定义规则
+		String reg="^1[3|5|8|9]\\d+{9}$";
+		
+		return src.matches(reg);
+	}
+	//判断是否是邮箱
+	public static boolean isEMail(String src){
+		//定义规则
+		String reg="^\\w+\\@\\w+\\.\\w+$";
+		
+		return src.matches(reg);
+	}
+	//判断一个字符串是否是数字 考虑整数 负数 小数
+	public static boolean isNumber(String src){
+		
+		String reg="^(-)[0-9]+(\\.[0-9]+)?$";
+		
+		return src.matches(reg);
+	}
+	//传入两个参数,要求返回字符串从start长度后以*代替
+	public static String getValue(String str,int start){
+		//八维教育学院 返回八维****
+		String s1=str.substring(start);
+		String s2="";
+		for (int i = 0; i<s1.length(); i++) {
+			//str.replace(s1,"*");
+			s2+="*";
+		}
+		
+		return str.substring(0,2)+s2;
+	}
 }
